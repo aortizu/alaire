@@ -7,7 +7,7 @@ CONFIG += felgo
 
 # Project identifier and version
 # More information: https://felgo.com/doc/felgo-publishing/#project-configuration
-PRODUCT_IDENTIFIER = com.yourcompany.wizardEVAP.Test
+PRODUCT_IDENTIFIER = com.colaerospotters.alaire
 PRODUCT_VERSION_NAME = 1.0.0
 PRODUCT_VERSION_CODE = 1
 
