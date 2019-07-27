@@ -1,0 +1,8 @@
+{
+    "title": "Test",
+    "identifier": "com.yourcompany.wizardEVAP.Test",
+    "orientation": "portrait",
+    "versioncode": 1,
+    "versionname": "1.0.0",
+    "stage": "test"
+}
