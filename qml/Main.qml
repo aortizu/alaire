@@ -287,7 +287,7 @@ App {
 
     function openPdf() {
         loading.enabled = false
-        nativeUtils.openUrl(pdfResource.storagePath)
+        fileUtils.openFile(pdfResource.storagePath)
         page.visible = true
         mensaje.visible = false
         page.forceLayout()

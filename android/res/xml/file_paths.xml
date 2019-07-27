@@ -20,6 +20,9 @@
         - the others are only necessary when using a custom URL
         -->
 
+	<files-path name="files" path="."/>
+	<cache-path name="cache" path="."/>
+	<external-path name="external" path="."/>	
     <!-- the path for nativeUtils.displayCameraPicker() -->
     <external-files-path name="images" path="Pictures"/>
 

@@ -1,0 +1,119 @@
+[1mdiff --git a/Test.pro.user b/Test.pro.user[m
+[1mindex ec041f8..b435fb6 100644[m
+[1m--- a/Test.pro.user[m
+[1m+++ b/Test.pro.user[m
+[36m@@ -1,6 +1,6 @@[m
+ <?xml version="1.0" encoding="UTF-8"?>[m
+ <!DOCTYPE QtCreatorProject>[m
+[31m-<!-- Written by QtCreator 4.8.2, 2019-07-27T01:24:13. -->[m
+[32m+[m[32m<!-- Written by QtCreator 4.8.2, 2019-07-27T12:59:30. -->[m
+ <qtcreator>[m
+  <data>[m
+   <variable>EnvironmentId</variable>[m
+[36m@@ -8,7 +8,7 @@[m
+  </data>[m
+  <data>[m
+   <variable>ProjectExplorer.Project.ActiveTarget</variable>[m
+[31m-  <value type="int">1</value>[m
+[32m+[m[32m  <value type="int">0</value>[m
+  </data>[m
+  <data>[m
+   <variable>ProjectExplorer.Project.EditorSettings</variable>[m
+[36m@@ -354,7 +354,7 @@[m
+     <value type="int" key="PE.EnvironmentAspect.Base">0</value>[m
+     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>[m
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Test</value>[m
+[31m-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>[m
+[32m+[m[32m    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Test</value>[m
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.AndroidRunConfiguration:C:/Users/alex-/Documents/QT/Test/Test.pro</value>[m
+     <value type="QString" key="RunConfiguration.Arguments"></value>[m
+     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>[m
+[36m@@ -614,7 +614,7 @@[m
+     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>[m
+     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>[m
+     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>[m
+[31m-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/alex-/Documents/QT/release</value>[m
+[32m+[m[32m    <value type="QString" key="RunConfiguration.WorkingDirectory.default"></value>[m
+    </valuemap>[m
+    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>[m
+   </valuemap>[m
+[1mdiff --git a/android/AndroidManifest.xml b/android/AndroidManifest.xml[m
+[1mindex c66a114..1bc42ff 100644[m
+[1m--- a/android/AndroidManifest.xml[m
+[1m+++ b/android/AndroidManifest.xml[m
+[36m@@ -1,6 +1,6 @@[m
+ <?xml version="1.0"?>[m
+ <manifest package="com.colaerospotters.alaire" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0" android:versionCode="1" android:installLocation="auto">[m
+[31m-    <application android:hardwareAccelerated="true" android:name="net.vplay.helper.VPlayApplication" android:label="@string/app_name" android:icon="@drawable/ic_launcher" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">[m
+[32m+[m[32m    <application android:hardwareAccelerated="true" android:name="net.vplay.helper.VPlayApplication" android:label="@string/app_name" android:icon="@drawable/icon" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">[m
+         <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="net.vplay.helper.VPlayActivity" android:label="@string/app_name" android:screenOrientation="portrait" android:launchMode="singleTop">[m
+             <intent-filter>[m
+                 <action android:name="android.intent.action.MAIN"/>[m
+[36m@@ -53,7 +53,7 @@[m
+         </provider>[m
+ [m
+     </application>[m
+[31m-    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="26"/>[m
+[32m+[m[32m    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="28"/>[m
+     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>[m
+ [m
+     <!-- The following comment will be replaced upon deployment with default permissions based on the dependencies of the application.[m
+[1mdiff --git a/android/build.gradle b/android/build.gradle[m
+[1mindex b654140..dbcc6cc 100644[m
+[1m--- a/android/build.gradle[m
+[1m+++ b/android/build.gradle[m
+[36m@@ -21,9 +21,11 @@[m [mapply plugin: 'com.android.application'[m
+ [m
+ dependencies {[m
+     implementation fileTree(dir: 'libs', include: ['*.jar'])[m
+[31m-[m
+     implementation "com.android.support:support-core-utils:27.1.0"[m
+     implementation "com.android.support:appcompat-v7:27.1.0"[m
+[32m+[m[32m    compile fileTree(dir: 'libs', include: ['*.jar'])[m
+[32m+[m[32m    compile 'com.android.support:support-core-utils:27.1.0'[m
+[32m+[m[32m    compile 'com.android.support:appcompat-v7:27.1.0'[m
+ [m
+ }[m
+ [m
+[1mdiff --git a/android/res/xml/file_paths.xml b/android/res/xml/file_paths.xml[m
+[1mindex edadf29..ce88847 100644[m
+[1m--- a/android/res/xml/file_paths.xml[m
+[1m+++ b/android/res/xml/file_paths.xml[m
+[36m@@ -20,6 +20,9 @@[m
+         - the others are only necessary when using a custom URL[m
+         -->[m
+ [m
+[32m+[m	[32m<files-path name="files" path="."/>[m
+[32m+[m	[32m<cache-path name="cache" path="."/>[m
+[32m+[m	[32m<external-path name="external" path="."/>[m[41m	[m
+     <!-- the path for nativeUtils.displayCameraPicker() -->[m
+     <external-files-path name="images" path="Pictures"/>[m
+ [m
+[1mdiff --git a/assets/felgo-logo.png b/assets/felgo-logo.png[m
+[1mindex b984cbc..89541b1 100644[m
+Binary files a/assets/felgo-logo.png and b/assets/felgo-logo.png differ
+[1mdiff --git a/qml/Main.qml b/qml/Main.qml[m
+[1mindex 788ac62..a15fcd6 100644[m
+[1m--- a/qml/Main.qml[m
+[1m+++ b/qml/Main.qml[m
+[36m@@ -287,7 +287,7 @@[m [mApp {[m
+ [m
+     function openPdf() {[m
+         loading.enabled = false[m
+[31m-        nativeUtils.openUrl(pdfResource.storagePath)[m
+[32m+[m[32m        fileUtils.openFile(pdfResource.storagePath)[m
+         page.visible = true[m
+         mensaje.visible = false[m
+         page.forceLayout()[m
+[1mdiff --git a/qml/config.json b/qml/config.json[m
+[1mindex 961b40e..b15cb66 100644[m
+[1m--- a/qml/config.json[m
+[1m+++ b/qml/config.json[m
+[36m@@ -1,6 +1,6 @@[m
+ {[m
+     "title": "Test",[m
+[31m-    "identifier": "com.yourcompany.wizardEVAP.Test",[m
+[32m+[m[32m    "identifier": "com.colaerospotters.alaire",[m
+     "orientation": "portrait",[m
+     "versioncode": 1,[m
+     "versionname": "1.0.0",[m
