@@ -11,7 +11,7 @@ App {
     //licenseKey: "<generate one from https://felgo.com/licenseKey>"
     id: app
 
-    licenseKey:"846E5EAD14C35A0911AE1604CE242C5054B5305C05793D88D65F6F18D430FD29439EC7EC46B4CB2F09DE2DC7094CE3AD4D8A56BEF5F6DAAC384FAAD4A276E601B5ACCAA7032286332D49C2BB1DDA4681C1F65584A9052BC4275C47FBFBF29CA98238FEFF6AC0E2030C1F6600134B3A0FB4AB1326AB630885A23D296EC098C752B6620B2511635FAB29B64B9D4E7CC5F4C032EB1B219218DFF8B99FEC17183BC32844014575DE0B9EC66132D8B840F82BF184A0F82D776B65C2D2FF8A7CDD914B8860184919E8DFE6C5F07DB89122DDD67E843E465E0F30CD6EE48B3AAE5EA9943583A5C196B08BC410361705AEEC512D181111557182EC4DEA9A0D2CABFAF223671ECC45A715D195B10449B51F4740CDA4CCFC0C6101E004B0B7A8A1B1ADAAB22F4F3C08F05EE6E18633B6F20DC748A5"
+    licenseKey: "846E5EAD14C35A0911AE1604CE242C5054B5305C05793D88D65F6F18D430FD29439EC7EC46B4CB2F09DE2DC7094CE3AD4D8A56BEF5F6DAAC384FAAD4A276E601B5ACCAA7032286332D49C2BB1DDA4681C1F65584A9052BC4275C47FBFBF29CA98238FEFF6AC0E2030C1F6600134B3A0FB4AB1326AB630885A23D296EC098C752B6620B2511635FAB29B64B9D4E7CC5F4C032EB1B219218DFF8B99FEC17183BC32844014575DE0B9EC66132D8B840F82BF184A0F82D776B65C2D2FF8A7CDD914B8860184919E8DFE6C5F07DB89122DDD67E843E465E0F30CD6EE48B3AAE5EA9943583A5C196B08BC410361705AEEC512D181111557182EC4DEA9A0D2CABFAF223671ECC45A715D195B10449B51F4740CDA4CCFC0C6101E004B0B7A8A1B1ADAAB22F4F3C08F05EE6E18633B6F20DC748A5"
 
     onInitTheme: {
         Theme.colors.tintColor = "#314D6D"
@@ -30,9 +30,15 @@ App {
     NavigationStack {
         id: navigationStack
         Page {
-            id: inicio
+            id: page1
+            title: "AL AIRE"
             navigationBarHidden: true
             backgroundColor: "#314d6d"
+            rightBarItem: ActivityIndicatorBarItem {
+                id: loading
+                enabled: false
+                visible: enabled
+            }
             AppImage {
                 id: alaire
                 width: dp(200)
@@ -158,26 +164,15 @@ App {
                     duration: 1000
                 }
                 onStopped: {
-                    inicio.navigationStack.push(page1)
+                    page1.navigationBarHidden = false
+                    page1.backgroundColor = "#ffffff"
+                    page.visible = true
                 }
-            }
-        }
-    }
-
-    Component {
-        id: page1
-        Page {
-            id: lista
-            title: "AL AIRE"
-            backNavigationEnabled: false
-            rightBarItem: ActivityIndicatorBarItem {
-                id: loading
-                enabled: false
-                visible: enabled
             }
 
             AppListView {
                 id: page
+                visible: false
                 spacing: 2
                 backgroundColor: "#efeff4"
                 anchors.bottom: parent.bottom
@@ -202,7 +197,7 @@ App {
                         AppText {
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.left: parent.left
-                            anchors.leftMargin: dp(105)
+                            anchors.leftMargin: dp(100)
                             wrapMode: Text.WordWrap
                             text: "Edición: " + modelData.edicion + " " + modelData.fecha
                         }
@@ -244,12 +239,12 @@ App {
                         onClicked: {
                             pdfResource.source = modelData.url
                             pdfResource.storageName = modelData.edicion + modelData.fecha + ".pdf"
-                            page.visible = false
-                            mensaje.visible = true
                             if (pdfResource.available) {
                                 openPdf()
                                 deleteFile(modelData.edicion)
                             } else {
+                                page.visible = false
+                                mensaje.visible = true
                                 loading.enabled = true
                                 pdfResource.download()
                                 actualizar(modelData.edicion, true)
@@ -292,7 +287,6 @@ App {
 
     function openPdf() {
         loading.enabled = false
-        console.log(pdfResource.storagePath)
         fileUtils.openFile(pdfResource.storagePath)
         page.visible = true
         mensaje.visible = false
@@ -326,10 +320,3 @@ App {
         xhr.send()
     }
 }
-
-/*##^## Designer {
-    D{i:0;autoSize:true;height:480;width:640}D{i:6;invisible:true}D{i:13;invisible:true}
-D{i:3;invisible:true}D{i:14;anchors_width:126;anchors_x:0;invisible:true}
-}
- ##^##*/
-
